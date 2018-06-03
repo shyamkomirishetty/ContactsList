@@ -1,0 +1,24 @@
+.contactsRow {
+    font-style: normal;
+}
+.actionButtonsContainer {
+    font-size: 12px;
+}
+.contactsTable td {
+    vertical-align: middle;
+}
+.contactsTable .form-check-input {
+    position: relative;
+    margin: 0;
+}
+.invalid-contacts-input {
+    font-size: 11px;
+    margin: 0;
+    height: 16px;
+}
+.invalid-space {
+    height: 16px;
+}
+.no-records {
+    text-align: center;
+}

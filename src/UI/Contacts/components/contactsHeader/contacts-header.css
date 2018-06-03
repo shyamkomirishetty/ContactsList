@@ -1,0 +1,23 @@
+.contacts-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 10px 15px 10px;
+}
+.contacts-header-label {
+    font-size: 20px;
+    font-weight: bold;
+}
+.contacts-header-button {
+    height: 35px;
+}
+.form-check-input {
+    position: relative;
+    margin: 0;
+}
+.contactsCheckbox {
+    vertical-align: bottom;
+}
+.required-field {
+    color: red;
+}

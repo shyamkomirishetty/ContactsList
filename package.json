@@ -1,0 +1,80 @@
+{
+  "name": "contacts-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf dist/* && rm -rf dist && mkdir dist && mkdir dist/public && mkdir dist/server && rm -f Archive.zip",
+    "copy-public": "cp -r public/* dist/public/ ",
+    "build-server": "./node_modules/.bin/babel -d dist/server src/server -s",
+    "build-ui": "webpack -p",
+    "lint": "eslint src",
+    "build": "npm run lint && npm run clean && npm run test && npm run check-coverage && npm run build-server && npm run build-ui && npm run copy-public",
+    "zip": "zip -r Archive.zip ./public/** ./.ebextensions/* ./bin/* ./dist/* ./Dockerfile ./Dockerrun.aws.json ./package.json ./node_modules/**",
+    "package": "npm run zip",
+    "start": "node ./bin/www",
+    "dev": "npm run build && npm start",
+    "test": "NODE_ENV=test nyc mocha --recursive --compilers js:babel-register --require babel-polyfill",
+    "check-coverage": "nyc check-coverage --lines 100 --functions 100 --branches 95"
+  },
+  "dependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "bootstrap": "^4.0.0",
+    "chai": "^4.1.2",
+    "css-loader": "^0.25.0",
+    "eslint": "^3.17.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.0",
+    "express": "~4.13.4",
+    "extract-text-webpack-plugin": "^1.0.0",
+    "file-loader": "^0.9.0",
+    "immutable": "^3.8.1",
+    "jquery": "^1.9.1",
+    "json-loader": "^0.5.7",
+    "mocha": "^2.5.3",
+    "node-loader": "^0.6.0",
+    "node-sass": "^3.10.0",
+    "nyc": "^10.2.0",
+    "prop-types": "^15.6.1",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
+    "react-redux": "^4.4.5",
+    "reactstrap": "^6.0.0",
+    "redux": "^3.5.2",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.1.0",
+    "sinon": "^5.0.10",
+    "style-loader": "^0.13.1",
+    "thunk": "0.0.1",
+    "webpack": "^1.13.2"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "exclude": [
+      "src/server/error-handler.js",
+      "test"
+    ],
+    "reporter": [
+      "html",
+      "lcov",
+      "text-summary"
+    ],
+    "extension": [
+      ".js"
+    ],
+    "cache": true,
+    "clean": true
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  }
+}
