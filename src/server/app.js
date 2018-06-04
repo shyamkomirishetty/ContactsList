@@ -1,19 +1,12 @@
 import express from 'express';
 import path from 'path';
-// import logger from 'morgan';
-// import cookieParser from 'cookie-parser';
-// import bodyParser from 'body-parser';
-import BurnViewRendererController from './Burn/controllers/view-renderer-controller';
+import ContactsViewRendererController from './Contacts/controllers/view-renderer-controller';
 
 const app = express();
 
-// app.use(logger('dev'));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/../../public')));
 
-app.use('/', BurnViewRendererController);
+app.use('/', ContactsViewRendererController);
 
 // catch invalid paths
 app.get('*', (req, res) => {
